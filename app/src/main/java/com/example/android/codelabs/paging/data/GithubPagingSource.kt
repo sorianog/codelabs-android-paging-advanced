@@ -16,7 +16,7 @@ class GithubPagingSource(
 ) : PagingSource<Int, Repo>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Repo> {
         val position = params?.key ?: GITHUB_STARTING_PAGE_INDEX
-        val apiQuery = query + IN_QUALIFIER
+        val apiQuery = "$query $IN_QUALIFIER"
         return try {
             val response = service.searchRepos(apiQuery, position, params.loadSize)
             val repos = response.items
