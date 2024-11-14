@@ -65,50 +65,6 @@ class GithubRepository(private val service: GithubService) {
         ).flow
     }
 
-//    suspend fun requestMore(query: String) {
-//        if (isRequestInProgress) return
-//        val successful = requestAndSaveData(query)
-//        if (successful) {
-//            lastRequestedPage++
-//        }
-//    }
-//
-//    suspend fun retry(query: String) {
-//        if (isRequestInProgress) return
-//        requestAndSaveData(query)
-//    }
-//
-//    private suspend fun requestAndSaveData(query: String): Boolean {
-//        isRequestInProgress = true
-//        var successful = false
-//
-//        val apiQuery = "$query $IN_QUALIFIER"
-//        try {
-//            val response = service.searchRepos(apiQuery, lastRequestedPage, NETWORK_PAGE_SIZE)
-//            Log.d("GithubRepository", "response $response")
-//            val repos = response.items ?: emptyList()
-//            inMemoryCache.addAll(repos)
-//            val reposByName = reposByName(query)
-//            searchResults.emit(RepoSearchResult.Success(reposByName))
-//            successful = true
-//        } catch (exception: IOException) {
-//            searchResults.emit(RepoSearchResult.Error(exception))
-//        } catch (exception: HttpException) {
-//            searchResults.emit(RepoSearchResult.Error(exception))
-//        }
-//        isRequestInProgress = false
-//        return successful
-//    }
-//
-//    private fun reposByName(query: String): List<Repo> {
-//        // from the in memory cache select only the repos whose name or description matches
-//        // the query. Then order the results.
-//        return inMemoryCache.filter {
-//            it.name.contains(query, true) ||
-//                    (it.description != null && it.description.contains(query, true))
-//        }.sortedWith(compareByDescending<Repo> { it.stars }.thenBy { it.name })
-//    }
-
     companion object {
         const val NETWORK_PAGE_SIZE = 30
     }
