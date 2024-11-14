@@ -19,10 +19,8 @@ package com.example.android.codelabs.paging.ui
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codelabs.paging.R
-import com.example.android.codelabs.paging.model.Repo
 
 /**
  * Adapter for the list of repositories.
@@ -52,10 +50,12 @@ class ReposAdapter : PagingDataAdapter<UiModel, RecyclerView.ViewHolder>(UIMODEL
                 is UiModel.RepoItem -> {
                     (holder as RepoViewHolder).bind(uiModel.repo)
                 }
+
                 is UiModel.SeparatorItem -> {
                     (holder as SeparatorViewHolder).bind(uiModel.description)
                 }
-                else -> { }
+
+                else -> {}
             }
         }
     }
